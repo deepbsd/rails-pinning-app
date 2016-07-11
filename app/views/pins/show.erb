@@ -6,6 +6,10 @@
 </div>
 
 <div class="show-pin">
+  <% if !@pin.image.url.nil? %>
+     <img src="<%= @pin.image.url(:medium) %>">
+     <!-- <img src="<%= @pin.image(:medium) %>">  -->
+  <% end %>
   <p><%= "#{@pin.text}" %></p>
 
   <hr/>
