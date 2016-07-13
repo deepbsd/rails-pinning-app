@@ -1,0 +1,23 @@
+<h1>User Login</h1>
+
+<% if !@errors.nil? %>
+<div class="error">
+<label>
+<%= pluralize(@errors.count, "error") %>Login not allowed because of
+errors:</label>
+<ul>
+  <% @errors.full_messages.each do |msg| %>
+  <li><%= "#{msg}" %></li>
+  <% end %>
+</ul>
+<% end %>
+<br />
+
+  <h3>Please sign in:</h3>
+    <%= form_tag("/login" ) do  %>
+        <label for="email" >Email:</label>
+        <%= email_field_tag 'email', nil, placeholder: 'email@example.com' %>
+        <label for="password" >Password:</label>
+        <%= password_field_tag 'password', nil %>
+        <%= button_tag "Sign in", data: { disable_with: 'Please wait...' } %>
+    <% end %>
