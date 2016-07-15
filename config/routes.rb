@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # This prevents the user index from being shown.
   resources :users, except: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.

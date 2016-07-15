@@ -36,6 +36,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
+  # I think factory girls helps test environment
+  gem 'factory_girl_rails'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring','~>1.3.4'
   gem 'database_cleaner'

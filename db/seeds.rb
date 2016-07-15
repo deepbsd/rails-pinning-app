@@ -1,3 +1,7 @@
+Category.create(
+  name: 'rails')
+Category.create(
+  name: 'ruby')
 Pin.create(
   title: 'Rails Tutorial', 
   url: 'https://www.railstutorial.org/', 
@@ -38,3 +42,18 @@ Pin.create(
     lessons and solve problems, all in your browser!",
   slug: "ruby-monk",
   category_id: "1")
+User.create(
+  first_name: "Dave",
+  last_name: "Jackson",
+  email: "deepbsd@yahoo.com",
+  password: "hardpass")
+User.create(
+  first_name: "Milo",
+  last_name: "Jackson",
+  email: "milo@example.com",
+  password: "milo")
+User.create(
+  first_name: "Molly",
+  last_name: "Jackson",
+  email: "molly@example.com",
+  password: "molly")
