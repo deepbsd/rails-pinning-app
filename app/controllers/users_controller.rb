@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -9,6 +10,10 @@ class UsersController < ApplicationController
 
   # GET /login
   def login
+  end
+
+  def logout
+    session.delete(:user_id)
   end
 
   # authenticate with self.authenticate method in user_controller
@@ -86,5 +91,11 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password)
+    end
+
+    def require_login
+      if current_user.nil? 
+        redirect_to :login
+      end
     end
 end
