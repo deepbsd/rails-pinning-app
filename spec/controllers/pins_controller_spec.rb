@@ -1,6 +1,17 @@
 require 'spec_helper'
 RSpec.describe PinsController do
 
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
+
+  after(:each) do
+    if !@user.destroyed?
+      @user.destroy
+    end
+  end
+
   describe "GET index" do
 
     it 'renders the index template ' do
@@ -12,11 +23,17 @@ RSpec.describe PinsController do
 
     end
 
-    it 'populates @pins with all pins' do
+    # We're only supposed to see pins of logged-in user, right?
 
+    #it 'populates @pins with all pins' do
+    #  get :index
+    #  expect(assigns[:pins]).to eq(Pin.all)
+    #end
+
+    it "redirects to login if user is not signed in" do
+      logout(@user)
       get :index
-      expect(assigns[:pins]).to eq(Pin.all)
-
+      expect(response).to redirect_to(:login)
     end
 
   end
@@ -36,6 +53,12 @@ describe "GET new" do
     it 'assigns an instance variable to a new pin' do
       get :new
       expect(assigns(:pin)).to be_a_new(Pin)
+    end
+    
+    it "redirects to login if user is not signed in" do
+      logout(@user)
+      get :new
+      expect(response).to redirect_to(:login)
     end
   end
 
@@ -88,6 +111,12 @@ describe "GET new" do
       post :create, pin: @pin_hash
       expect(assigns[:errors].present?).to be(true)
     end
+    
+    it "redirects to login if user is not signed in" do
+      logout(@user)
+      get :create
+      expect(response).to redirect_to(:login)
+    end
 
   end
 
@@ -114,6 +143,12 @@ describe "GET new" do
       # we started with, the one with the same :id
       get :edit, id: @pin.id
       expect(assigns(:pin)).to eq(@pin)
+    end
+    
+    it "redirects to login if user is not signed in" do
+      logout(@user)
+      get :edit, id: @pin.id
+      expect(response).to redirect_to(:login)
     end
   end
 
@@ -160,6 +195,12 @@ describe "GET new" do
     it 'renders the edit view' do
       put :update, id: @pin.id, pin: @error_hash
       expect(response).to render_template(:edit)
+    end
+    
+    it "redirects to login if user is not signed in" do
+      logout(@user)
+      put :update, id: @pin.id, pin: @pin_hash
+      expect(response).to redirect_to(:login)
     end
 
   end

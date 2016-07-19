@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def logout
     session.delete(:user_id)
+    redirect_to login_path
   end
 
   # authenticate with self.authenticate method in user_controller
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    #@pins = current_user.pins
   end
 
   # GET /users/new
@@ -93,9 +95,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
 
-    def require_login
-      if current_user.nil? 
-        redirect_to :login
-      end
-    end
 end
