@@ -1,18 +1,16 @@
 <h1>User Login</h1>
-
 <% if !@errors.nil? %>
-<div class="error">
+<div class="alert alert-secondary" role="alert">
 <label>
-<%= pluralize(@errors.count, "error") %>Login not allowed because of
-errors:</label>
-<ul>
-  <% @errors.full_messages.each do |msg| %>
-  <li><%= "#{msg}" %></li>
-  <% end %>
-</ul>
+Bad Login...
+</label>
+  <ul>
+  <li><%= @errors %></li>
+  </ul>
 <% end %>
+</div>
 <br />
-
+<hr>
   <h3>Please sign in:</h3>
     <%= form_tag("/login" ) do  %>
         <label for="email" >Email:</label>

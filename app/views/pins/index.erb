@@ -30,6 +30,10 @@
 	    </div>
             <hr/>
             <p class="text"><%= "#{pin.text}" %></p>
+	  <%= link_to repin_path(pin), class: "btn btn-primary btn-sm", method: "post" do %>
+	  <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+	  Repin!
+	  <% end %>
           </div>
         </div>
       <% end %>
