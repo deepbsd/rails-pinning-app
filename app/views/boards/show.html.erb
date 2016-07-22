@@ -1,0 +1,20 @@
+<h1>Board Info</h1>
+
+<p id="notice"><%= notice %></p>
+<hr>
+<p>
+  <strong>Board:</strong>
+  <%= @board.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @board.user.first_name %>
+</p>
+
+<p>Pins:
+<%= render partial: "shared/pins_list" %>
+</p>
+<hr>
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>

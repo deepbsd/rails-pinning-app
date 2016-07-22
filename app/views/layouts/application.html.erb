@@ -9,14 +9,38 @@
 </head>
 <body>
   <div class="container">
-  <% if  session[:user_id] %>
-     <div class="pull-right">
-          <h3>
+  <div class="pull-right">
+  <% if  logged_in? %>
+     <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>"  />
+     <div class="dropdown">
+     <button id="dropdownMenu1" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
           <%= "Hi, #{current_user.first_name}!" %>
-          </h3>
-	  <h5>
-	  <%= link_to "[LOGOUT]", logout_path(current_user), method: :delete %>
-	  </h5>
+	  <span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+     <% current_user.boards.each do |board| %>
+     <li role="presentation">
+       <a role="menuitem" tabindex="-1" href="/boards/<%= board.id %>">
+         <%= board.name %>
+       </a>
+       </li>
+       <% end %>
+       <li role="presentation" class="divider"></li>
+       <li role="presentation">
+         <%= link_to "Add a Pin", new_pin_path, "role" => "menuitem", "tabindex" => "-1" %>
+       </li>
+       <li role="presentation">
+         <%= link_to "Add a Board", new_board_path, "role" => "menuitem", "tabindex" => "-1" %>
+	 </li>
+	 <li role="presentation" class="divider"></li>
+	 <li role="presentation">
+	   <%= link_to "Home", root_path, "role" => "menuitem", "tabindex" => "-1" %>
+	 </li>
+	 <li role="presentation">
+	   <%= link_to "Logout", logout_path(current_user), :method => :delete, "role" => "menuitem", "tabindex" => "-1" %>
+	 </li>
+       </ul>
+       </div>
      </div>
     <% end %>
   <%= yield %>
