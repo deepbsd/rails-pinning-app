@@ -14,6 +14,9 @@ RSpec.describe User, type: :model do
       end
     end
 
+
+    # This will not work now that we have password digests (encrypted
+    # passwords)!
     it "authenticates and returns a user when valid email and password are used" do
       @user.authenticate(@user.password)
       expect(@user).to eq(@user)

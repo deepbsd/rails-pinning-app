@@ -42,6 +42,7 @@ class PinsController < ApplicationController
     @pin = Pin.find(params[:id])
     # populate @users with all users who have pinned this pin
     @users = User.joins(:pinnings).where("users.id = ? or pinnings.pin_id = ?", @pin.user_id, @pin.id).distinct
+    @pins = current_user.pins
   end
 
   def show_by_name

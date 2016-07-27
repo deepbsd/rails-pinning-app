@@ -3,12 +3,14 @@ RSpec.describe PinsController do
 
   before(:each) do
     @user = FactoryGirl.create(:user)
+    @board = @user.boards.first
     login(@user)
   end
 
   after(:each) do
     if !@user.destroyed?
       @user.pinnings.destroy_all
+      @user.boards.destroy_all
       @user.destroy
     end
   end
