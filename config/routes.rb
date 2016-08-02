@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :followers
+
   resources :boards
 
   # This prevents the user index from being shown.

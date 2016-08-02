@@ -13,7 +13,7 @@
   <% if  logged_in? %>
      <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>"  />
      <div class="dropdown">
-     <button id="dropdownMenu1" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+     <button id="dropdownMenu1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
           <%= "Hi, #{current_user.first_name}!" %>
 	  <span class="caret"></span>
      </button>
@@ -27,10 +27,20 @@
        <% end %>
        <li role="presentation" class="divider"></li>
        <li role="presentation">
+         <%= link_to "My Boards", boards_path, "role" => "menuitem", "tabindex" => "-1" %>
+       </li>
+       <li role="presentation">
+           <%= link_to "My Followers", followers_path, "role" => "menuitem", "tabindex" => "-1" %>
+       </li>
+       <li role="presentation" class="divider"></li>
+       <li role="presentation">
          <%= link_to "Add a Pin", new_pin_path, "role" => "menuitem", "tabindex" => "-1" %>
        </li>
        <li role="presentation">
          <%= link_to "Add a Board", new_board_path, "role" => "menuitem", "tabindex" => "-1" %>
+	 </li>
+	 <li role="presentation">
+            <%= link_to "Add a Follower", new_follower_path, "role" => "menuitem", "tabindex" => "-1" %>
 	 </li>
 	 <li role="presentation" class="divider"></li>
 	 <li role="presentation">

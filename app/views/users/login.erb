@@ -19,3 +19,9 @@ Bad Login...
         <%= password_field_tag 'password', nil %>
         <%= button_tag "Sign in", data: { disable_with: 'Please wait...' } %>
     <% end %>
+    <br>
+<%= link_to  new_user_path class: "btn btn-primary btn-lg" do  %>
+<i class="fa fa-user" ></i>
+New User?
+<% end %>
+

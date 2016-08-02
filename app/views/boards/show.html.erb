@@ -9,7 +9,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @board.user.first_name %>
+  <%= @board.user.full_name %>
 </p>
 
 <h2>My Pins on This Board:</h2>
@@ -17,5 +17,7 @@
 <%= render partial: "shared/pins_list" %>
 </p>
 <hr>
-<%= link_to 'Edit', edit_board_path(@board) %> |
+<% if @board.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_board_path(@board) %> |
+<% end %>
 <%= link_to 'Back', boards_path %>
