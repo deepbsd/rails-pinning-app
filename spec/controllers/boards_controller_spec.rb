@@ -183,8 +183,11 @@ RSpec.describe BoardsController do
      end
 
      it 'creates a BoardPinning' do
-       #@user = FactoryGirl.create(:user_with_boards_and_followers)
-       #login(@user)
+       
+      
+       #user_to_let_pin = @user.followers.first
+       @user = FactoryGirl.create(:user_with_boards_and_followers)
+       login(@user)
        user_to_let_pin = @user.followers.first
 
        @board_hash[:board_pinners_attributes] = []

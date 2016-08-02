@@ -67,7 +67,8 @@ describe "GET new" do
 
     it 'assigns @pinnable_boards to all pinnable boards' do
       get :new
-      expect(assigns(:pinnable_boards).present?).to be(true)
+      #expect(assigns(:pinnable_boards).present?).to be(true)
+      expect(assigns(:pinnable_boards)).to eq(@pinnable_boards)
     end
 
   end  #End of GET new...

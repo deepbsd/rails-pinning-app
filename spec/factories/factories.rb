@@ -26,15 +26,16 @@ FactoryGirl.define do
           user.pinnings.create(pin: FactoryGirl.create(:pin), board: user.boards.first)
         end
       end
-    end
 
     factory :user_with_boards_and_followers do #Followers follow the test user...
       after(:create) do |user|
-        user.boards << FactoryGirl.create(:board)
         3.times do
-          user.pinnings.create(pin: FactoryGirl.create(:pin), board: user.boards.first)
+          #user.pinnings.create(pin: FactoryGirl.create(:pin), board: user.boards.first)
+	  follower = FactoryGirl.create(:user)
+	  Follower.create(user: user, follower_id: follower.id)
         end
       end
+    end
     end
 
     factory :user_with_followees do  #Followees are people test user follows...
